@@ -1,24 +1,77 @@
-# README
+## README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| nick_name          | string | null: false |
+| first_name         | string | null: false |
+| first_name_kana    | string | null: false |
+| last_name          | string | null: false |
+| last_name_kana     | string | null: false |
+| birth_date         | date   | null: false |
 
-* Ruby version
+## Association
+- has_many :items dependent: :destroy
+- has_many :comments dependent: :destroy
+- has_many :trades
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| info               | text       | null: false                    |
+| category           | integer    | null: false                    |
+| sales_status       | integer    | null: false                    |
+| sell_price         | integer    | null: false                    |
+| sipping_fee_status | integer    | null: false                    |
+| sipping_scheduled  | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
+| prefecture         | references | null: false, foreign_key: true |
 
-* Database creation
+## Association
+- has_many :comments dependent: :destroy
+- belongs_to :user
+- has_one :trade
+- has_one :prefecture
 
-* Database initialization
+## comments テーブル
 
-* How to run the test suite
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| text      | text       | null: false                    |
+| user      | references | null: false, foreign_key: true |
+| prototype | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+## Association
+- belongs_to :user
+- belongs_to :item
 
-* Deployment instructions
+## trades テーブル
 
-* ...
+| Column       | Type       | Options                        |
+| -------------| ---------- | ------------------------------ |
+| city         | string     | null: false                    |
+| addresses    | string     | null: false                    |
+| building     | string     | null: false                    |
+| postal_code  | integer    | null: false                    |
+| phone_number | integer    | null: false                    |
+| user         | references | null: false, foreign_key: true |
+| item         | references | null: false, foreign_key: true |
+| prefecture   | references | null: false, foreign_key: true |
+
+- belongs_to :user
+- belongs_to :item
+- has_one :prefecture
+
+## prefectures テーブル
+
+| Column          | Type   | Options     |
+| ----------------| -------| ----------- |
+| prefecture_name | string | null: false |
+
+- belongs_to :item
+- belongs_to :trade
