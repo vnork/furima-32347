@@ -16,7 +16,7 @@
 - has_many :items dependent: :destroy
 - has_many :comments dependent: :destroy
 - has_many :trades
-- has_one  :destination
+
 
 
 ## items テーブル
@@ -50,7 +50,7 @@
 | user          | references | null: false, foreign_key: true |
 
 ## Association
-- belongs_to :user
+- belongs_to :trade
 
 
 ## trades テーブル
@@ -62,7 +62,7 @@
 ## Association
 - belongs_to :item
 - belongs_to :user
-
+- has_one    :destination
 
 ## comments テーブル
 | Column    | Type       | Options                        |
