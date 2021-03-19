@@ -15,7 +15,8 @@
 ## Association
 - has_many :items dependent: :destroy
 - has_many :comments dependent: :destroy
-- has_many :destinations
+- has_many :trades
+- has_one  :destination
 
 
 ## items テーブル
@@ -29,12 +30,12 @@
 | sipping_fee_status_id | integer    | null: false                    |
 | sipping_scheduled_id  | integer    | null: false                    |
 | prefecture_id         | integer    | null: false                    |
-| user_id               | references | null: false, foreign_key: true |
+| user                  | references | null: false, foreign_key: true |
 
 ## Association
-- has_many :comments dependent: :destroy
+- has_many   :comments dependent: :destroy
 - belongs_to :user
-- has_one :trade
+- has_one    :trade
 
 
 ## destinations テーブル
@@ -43,33 +44,32 @@
 | city          | string     | null: false                    |
 | addresses     | string     | null: false                    |
 | building      | string     | null: false                    |
-| postal_code   | integer    | null: false                    |
-| phone_number  | integer    | null: false                    |
+| postal_code   | string     | null: false                    |
+| phone_number  | string     | null: false                    |
 | prefecture_id | integer    | null: false　　　　　　　　　　　　|
-| user_id       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :user
-- has_one :trade
 
 
 ## trades テーブル
-| Column         | Type       | Options                        |
-| ---------------| ---------- | ------------------------------ |
-| item_id        | references | null: false, foreign_key: true |
-| destination_id | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| -------| ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :item
-- belongs_to :trade
+- belongs_to :user
 
 
 ## comments テーブル
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | text      | text       | null: false                    |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :user
