@@ -27,8 +27,8 @@
 | category_id           | integer    | null: false                    |
 | sales_status_id       | integer    | null: false                    |
 | sell_price            | integer    | null: false                    |
-| sipping_fee_status_id | integer    | null: false                    |
-| sipping_scheduled_id  | integer    | null: false                    |
+| shipping_fee_status_id | integer    | null: false                    |
+| shipping_schedule_id  | integer    | null: false                    |
 | prefecture_id         | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
@@ -42,7 +42,7 @@
 | Column        | Type       | Options                        |
 | --------------| ---------- | ------------------------------ |
 | city          | string     | null: false                    |
-| addresses     | string     | null: false                    |
+| address     | string     | null: false                    |
 | building      | string     |                                |
 | postal_code   | string     | null: false                    |
 | phone_number  | string     | null: false                    |
