@@ -54,10 +54,10 @@
 
 
 ## trades テーブル
-| Column        | Type       | Options                        |
-| --------------| ---------- | ------------------------------ |
-| item          | references | null: false, foreign_key: true |
-| destination   | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| --------| ---------- | ------------------------------ |
+| item    | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :item
