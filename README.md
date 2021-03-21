@@ -47,7 +47,7 @@
 | postal_code   | string     | null: false                    |
 | phone_number  | string     | null: false                    |
 | prefecture_id | integer    | null: false　　　　　　　　　　　　|
-| user          | references | null: false, foreign_key: true |
+| trade         | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :trade
