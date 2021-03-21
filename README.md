@@ -43,7 +43,7 @@
 | --------------| ---------- | ------------------------------ |
 | city          | string     | null: false                    |
 | addresses     | string     | null: false                    |
-| building      | string     | null: false                    |
+| building      | string     |                                |
 | postal_code   | string     | null: false                    |
 | phone_number  | string     | null: false                    |
 | prefecture_id | integer    | null: false　　　　　　　　　　　　|
@@ -54,10 +54,10 @@
 
 
 ## trades テーブル
-| Column | Type       | Options                        |
-| -------| ---------- | ------------------------------ |
-| item   | references | null: false, foreign_key: true |
-| user   | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| --------------| ---------- | ------------------------------ |
+| item          | references | null: false, foreign_key: true |
+| destination   | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :item
