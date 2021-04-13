@@ -2,7 +2,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :email,                 uniqueness: true
   validates :password,              length: { minimum: 6 },
                                     format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,}+\z/, message: 'Include both letters and numbers' }
   validates :nick_name,             presence: true
