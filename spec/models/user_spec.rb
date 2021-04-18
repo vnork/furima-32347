@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
     it 'last_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない' do
       @user = build(:user, last_name: Faker::Lorem.words)
       @user.valid?
-      expect(@user.errors.full_messages).to include 'Last name Full-width characters'
+      expect(@user.errors.full_messages).to include 'Last name は全角（漢字・ひらがな・カタカナ）で入力して下さい'
     end
 
     it 'first_nameが空では登録できない' do
@@ -90,7 +90,7 @@ RSpec.describe User, type: :model do
     it 'first_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない' do
       @user = build(:user, first_name: Faker::Lorem.words)
       @user.valid?
-      expect(@user.errors.full_messages).to include 'First name Full-width characters'
+      expect(@user.errors.full_messages).to include 'First name は全角（漢字・ひらがな・カタカナ）で入力して下さい'
     end
 
     it 'last_name_kanaが空では登録できない' do
@@ -102,7 +102,7 @@ RSpec.describe User, type: :model do
     it 'last_name_kanaが全角（カタカナ）以外では登録できない' do
       @user = build(:user, last_name_kana: Gimei.last.kanji)
       @user.valid?
-      expect(@user.errors.full_messages).to include 'Last name kana Full-width katakana characters'
+      expect(@user.errors.full_messages).to include 'Last name kana は全角（カタカナ）で入力して下さい'
     end
 
     it 'first_name_kanaが空では登録できない' do
@@ -114,7 +114,7 @@ RSpec.describe User, type: :model do
     it 'first_name_kanaが全角（カタカナ）以外では登録できない' do
       @user = build(:user, first_name_kana: Gimei.first.kanji)
       @user.valid?
-      expect(@user.errors.full_messages).to include 'First name kana Full-width katakana characters'
+      expect(@user.errors.full_messages).to include 'First name kana は全角（カタカナ）で入力して下さい'
     end
 
     it 'birth_dateが空では登録できない' do

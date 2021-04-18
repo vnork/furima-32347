@@ -1,8 +1,8 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
-
   </header>
+
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model:@item, url:items_path, local: true do |f| %>
@@ -100,6 +100,7 @@
           <%= f.text_field :sell_price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
+          
           <span>販売手数料 (10%)</span>
           <span>
             <span id='add-tax-price'></span>円
