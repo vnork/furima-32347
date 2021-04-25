@@ -14,9 +14,10 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
     it 'priceが9,999,999円なら出品できる' do
-    #it 'priceが9,999,990円なら出品できる' do
-      @item.sell_price = 9999999
-      #@item.sell_price = 9999990
+    # 1円単位を使用不可にする場合は下記を使用 
+    # it 'priceが9,999,990円なら出品できる' do
+      # @item.sell_price = 9999990
+      @item.sell_price = 9_999_999
       expect(@item).to be_valid
     end
     it 'imageがないと出品できない' do
@@ -25,12 +26,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Image can't be blank")
     end
     it 'nameがないと出品できない' do
-      @item = build(:item, item_name: "")
+      @item = build(:item, item_name: '')
       @item.valid?
       expect(@item.errors.full_messages).to include("Item name can't be blank")
     end
     it 'infoがないと出品できない' do
-      @item = build(:item, info: "")
+      @item = build(:item, info: '')
       @item.valid?
       expect(@item.errors.full_messages).to include("Info can't be blank")
     end
@@ -60,41 +61,44 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include('Shipping schedule を選択してください')
     end
     it 'sell_priceがないと出品できない' do
-      @item = build(:item, sell_price: "")
+      @item = build(:item, sell_price: '')
       @item.valid?
       expect(@item.errors.full_messages).to include("Sell price can't be blank")
     end
     it 'sell_priceが300円以下だと出品できない' do
-      #@item = build(:item, sell_price: 290)
+      # 1円単位を使用不可にする場合は下記を使用
+      # @item = build(:item, sell_price: 290)
       @item = build(:item, sell_price: 299)
       @item.valid?
       expect(@item.errors.full_messages).to include('Sell price が範囲外です')
     end
     it 'sell_priceが9,999,999円以上だと出品できない' do
-    #it 'sell_priceが9,999,990円以上だと出品できない' do
-      @item = build(:item, sell_price: 10000000)
+      # 1円単位を使用不可にする場合は下記を使用 
+      # it 'sell_priceが9,999,990円以上だと出品できない' do
+      @item = build(:item, sell_price: 10_000_000)
       @item.valid?
       expect(@item.errors.full_messages).to include('Sell price が範囲外です')
     end
     it 'sell_priceが半角数字でないと出品できない' do
-      @item = build(:item, sell_price: "３００")
+      @item = build(:item, sell_price: '３００')
       @item.valid?
       expect(@item.errors.full_messages).to include('Sell price before type cast は半角数字で入力してください')
     end
     it 'sell_priceが半角英数混合では登録できないこと' do
-      @item = build(:item, sell_price: "300yen")
+      @item = build(:item, sell_price: '300yen')
       @item.valid?
       expect(@item.errors.full_messages).to include('Sell price before type cast は半角数字で入力してください')
     end
     it 'sell_priceが半角英語だけでは登録できないこと' do
-      @item.sell_price = "ThreeHundredYen"
+      @item.sell_price = 'ThreeHundredYen'
       @item.valid?
       expect(@item.errors.full_messages).to include('Sell price before type cast は半角数字で入力してください')
     end
-    #it 'sell_priceの1の位が0以外では登録できないこと' do
-    #  @item.sell_price = "301"
-    #  @item.valid?
-    #  expect(@item.errors.full_messages).to include('Sell price は10円単位で設定してください')
-    #end
+    # 1円単位を使用不可にする場合は下記を使用
+    # it 'sell_priceの1の位が0以外では登録できないこと' do
+      # @item.sell_price = "301"
+      # @item.valid?
+      # expect(@item.errors.full_messages).to include('Sell price は10円単位で設定してください')
+    # end
   end
 end
