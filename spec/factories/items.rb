@@ -8,6 +8,7 @@ FactoryBot.define do
     item_name { Faker::Lorem.sentence }
     info { Faker::Lorem.sentence }
     category_id { Faker::Number.between(from: 2, to: 11) }
+    # 1円単位を使用不可にする場合は下記を使用 
     # sell_price  { "#{Faker::Number.number(digits: 3)}0"}
     sell_price  { Faker::Number.number(digits: 4) }
     shipping_fee_status_id { Faker::Number.between(from: 2, to: 3) }

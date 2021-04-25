@@ -12,6 +12,7 @@ class Item < ApplicationRecord
     validates  :image
     validates  :item_name
     validates  :info
+    # 1円単位を使用不可にする場合は下記を使用
     # validates  :sell_price , inclusion: { in: 300..9999990, message: "が範囲外です" },format: {with: /[0]\z/, message: "は10円単位で設定してください"}
     validates  :sell_price, inclusion: { in: 300..9_999_999, message: 'が範囲外です' }
     validates  :user
