@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      item:
+      user:
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        nick_name: "ニックネーム"
+        last_name: "姓（全角）"
+        first_name: "名（全角）"
+        last_name_kana: "姓（全角カナ）"
+        first_name_kana: "名（全角カナ）"
+        birth_date: "誕生日"
+      item:
+        image: "商品画像"
+        item_name: "商品名"
+        info: "商品の説明"
+        sell_price: "価格"
+        sell_price_before_type_cast: "価格"
+        category_id: "カテゴリー"
+        sales_status_id: "商品の状態"
+        shipping_fee_status_id: "配送料の負担"
+        prefecture_id: "発送元の地域"
+        shipping_schedule_id: "発送までの日数"
