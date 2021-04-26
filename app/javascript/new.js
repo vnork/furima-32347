@@ -5,7 +5,6 @@
       const profit = document.getElementById("profit")
       item_price.addEventListener("input", () => {
         const inputPrice = item_price.value
-        //const inputTaxPrice = inputPrice * 0.1
         const inputTaxPrice = Math.floor(inputPrice * 0.1)
 
         add_tax_price.innerText = inputTaxPrice
