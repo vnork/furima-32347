@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :item_find, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -23,11 +23,20 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id))
-    else
+    unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) then
       redirect_to root_path
     end
+    # ifの条件文の後に処理を記述した場合
+    #if request.referer&.include?(item_path(@item.id)) 
+    #  if current_user.id != @item.user.id 
+    #    redirect_to root_path
+    #  end
+    #else
+    #  redirect_to root_path
+    #end
   end
+
+
 
   def update
     if @item.update(item_params)
