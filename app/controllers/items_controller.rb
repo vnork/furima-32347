@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :item_find, only: [:show, :edit, :update, :destroy]
+  before_action :check_correct_access, only: [:edit, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -23,20 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) then
-      redirect_to root_path
-    end
-    # ifの条件文の後に処理を記述した場合
-    #if request.referer&.include?(item_path(@item.id)) 
-    #  if current_user.id != @item.user.id 
-    #    redirect_to root_path
-    #  end
-    #else
-    #  redirect_to root_path
-    #end
   end
-
-
 
   def update
     if @item.update(item_params)
@@ -47,12 +35,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id))
-      @item.destroy
-      redirect_to root_path
-    else
-      redirect_to item_path(@item.id)
-    end
+    @item.destroy
+    redirect_to root_path
   end
 
   private
@@ -66,4 +50,9 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   
+  def check_correct_access
+    unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) then
+      redirect_to root_path
+    end
+  end
 end
