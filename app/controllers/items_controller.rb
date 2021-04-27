@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
-  before_action :item_find, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :item_find, only: [:show, :edit, :update, :destroy]
+  before_action :check_correct_access, only: [:edit, :destroy]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -23,8 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id))
-    else
+    unless  request.referer&.include?(item_path(@item.id)) then
       redirect_to root_path
     end
   end
@@ -37,6 +37,11 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -46,5 +51,11 @@ class ItemsController < ApplicationController
 
   def item_find
     @item = Item.find(params[:id])
+  end
+  
+  def check_correct_access
+    unless current_user.id == @item.user.id  then
+      redirect_to root_path
+    end
   end
 end
