@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :form do
-    user_id {"1"}
-    item_id {"6"}
     token {Faker::Lorem.characters(number: 29)}
     city { Gimei.city.kanji }
     address { Gimei.town.kanji }

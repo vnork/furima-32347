@@ -40,6 +40,8 @@ class TradesController < ApplicationController
   end
 
   def check_correct_access
-    redirect_to root_path unless request.referer&.include?(item_path(@item.id)) && @item.trade.blank?
+    unless request.referer&.include?(item_path(@item.id)) && @item.trade.blank? && current_user.id != @item.user.id
+     redirect_to root_path 
+    end
   end
 end
