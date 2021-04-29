@@ -11,6 +11,8 @@ class Form
     validates :phone_number, format: { with: /\A[0-9]+\z/, message: 'は半角数字のみで入力してください' },
                              length: { maximum: 11, message: 'は11桁以下で入力してください' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save

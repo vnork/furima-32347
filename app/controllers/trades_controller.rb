@@ -7,10 +7,6 @@ class TradesController < ApplicationController
     @form = Form.new
   end
 
-  def new
-    @form = Form.new
-  end
-
   def create
     @form = Form.new(form_params)
     if @form.valid?

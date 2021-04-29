@@ -7,6 +7,9 @@ RSpec.describe Form, type: :model do
   end
 
   describe '商品購入' do
+    it '入力条件が適切であれば登録ができる' do
+      expect(@form).to be_valid
+    end
     it '電話番号が空では登録できない' do
       @form = build(:form, phone_number: '')
       @form.valid?
