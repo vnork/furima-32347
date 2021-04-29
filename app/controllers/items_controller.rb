@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    unless  request.referer&.include?(item_path(@item.id)) then
+      redirect_to root_path
+    end
   end
 
   def update
@@ -52,6 +55,7 @@ class ItemsController < ApplicationController
 
   def check_correct_access
     unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) && @item.trade.blank?
+
       redirect_to root_path
     end
   end
