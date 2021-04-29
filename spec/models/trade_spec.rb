@@ -42,10 +42,10 @@ RSpec.describe Form, type: :model do
       @form.valid?
       expect(@form.errors.full_messages).to include('Postal code は"-"を含んだ半角数字で入力してください')
     end
-    it '郵便番号が7桁以上では登録できない' do
+    it '郵便番号が9桁以上では登録できない' do
       @form = build(:form, postal_code: Faker::Number.number(digits: 8).to_s.insert(3, '-'))
       @form.valid?
-      expect(@form.errors.full_messages).to include('Postal code は7桁以下で入力してください')
+      expect(@form.errors.full_messages).to include("Postal code は\"-\"を含めた8桁以下で入力してください")
     end
     it '都道府県が空では登録できない' do
       @form = build(:form, prefecture_id: 1)
