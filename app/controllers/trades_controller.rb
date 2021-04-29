@@ -25,8 +25,8 @@ class TradesController < ApplicationController
   private
 
   def form_params
-    params.permit(:city, :address, :building, :prefecture_id, :postal_code, :phone_number, :item_id, :user_id).merge(
-      user_id: current_user.id, token: params[:token]
+    params.require(:form).permit(:city, :address, :building, :prefecture_id, :postal_code, :phone_number, :user_id).merge(
+     item_id: @item.id, user_id: current_user.id, token: params[:token]
     )
   end
 

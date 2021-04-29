@@ -8,7 +8,7 @@ class Form
     validates :building
     validates :prefecture_id, numericality: { other_than: 1, message: 'を選択してください' }
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'は"-"を含んだ半角数字で入力してください' },
-                            length: { maximum: 7, message: 'は7桁以下で入力してください' }
+                            length: { maximum: 8, message: 'は"-"を含めた8桁以下で入力してください' }
     validates :phone_number, format: { with: /\A[0-9]+\z/, message: 'は半角数字のみで入力してください' },
                              length: { maximum: 11, message: 'は11桁以下で入力してください' }
     validates :token
