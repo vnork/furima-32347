@@ -1,10 +1,10 @@
 class Trade < ApplicationRecord
-  belongs_to :users
-  belongs_to :items
-  belongs_to :destinations
+  belongs_to :user
+  has_one :item
+  has_one :destination
 
   with_options presence: true do
-    validates :user
-    validates :item
+    validates :user_id
+    validates :item_id
   end
 end

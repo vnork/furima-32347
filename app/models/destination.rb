@@ -1,5 +1,6 @@
 class Destination < ApplicationRecord
-  belongs_to :trade
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  has_one :trade
   belongs_to :prefecture
 
   with_options presence: true do
@@ -9,6 +10,6 @@ class Destination < ApplicationRecord
     validates :prefecture_id
     validates :postal_code
     validates :phone_number
-    validates :trade
+    validates :trade_id
   end
 end
