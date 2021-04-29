@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
   end
   
   def check_correct_access
-    unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) then
+    unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) && @item.trade.blank? then
       redirect_to root_path
     end
   end
