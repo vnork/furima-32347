@@ -52,9 +52,9 @@ class ItemsController < ApplicationController
   def item_find
     @item = Item.find(params[:id])
   end
-  
+
   def check_correct_access
-    unless current_user.id == @item.user.id  then
+    unless current_user.id == @item.user.id && request.referer&.include?(item_path(@item.id)) && @item.trade.blank?
       redirect_to root_path
     end
   end

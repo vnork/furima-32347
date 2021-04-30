@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :trades
 
   validates :password,              length: { minimum: 6 },
                                     format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,}+\z/, message: 'は英字と数字の両方を含めて設定して下さい' }
