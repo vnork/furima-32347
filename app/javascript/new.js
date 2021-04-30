@@ -1,5 +1,5 @@
   window.addEventListener('load', function(){
-    if(document.URL.match("http://localhost:3000/items")){
+    if(document.URL.match("/items")){
       const item_price = document.getElementById("item-price")
       const add_tax_price = document.getElementById("add-tax-price")
       const profit = document.getElementById("profit")
